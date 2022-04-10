@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">LV3</string>
-    <string name="task1">eat</string>
-    <string name="task2">pray</string>
-    <string name="task3">love</string>
     <string name="btnAdd">ADD</string>
+    <string name="btnDelete">DELETE</string>
     <string name="todoEntry">Enter Task</string>
-    <string name="example">Example</string>
 </resources>

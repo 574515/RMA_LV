@@ -3,7 +3,6 @@ package com.user.lv3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.user.lv3.model.Task
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,13 +16,15 @@ class MainActivity : AppCompatActivity() {
         rvView.adapter = todoAdapter
         rvView.layoutManager = LinearLayoutManager(this)
 
-        btnAddTodo.setOnClickListener {
-            val todoTitle = etTodoTitle.text.toString()
+        btnAdd.setOnClickListener {
+            val todoTitle = etTask.text.toString()
             if(todoTitle.isNotEmpty()) {
                 val todo = Task(todoTitle)
-                todoAdapter.addTodo(todo)
-                etTodoTitle.text.clear()
+                todoAdapter.addTask(todo)
+                etTask.text.clear()
             }
         }
+
+        btnDelete.setOnClickListener { todoAdapter.deleteDone() }
     }
 }

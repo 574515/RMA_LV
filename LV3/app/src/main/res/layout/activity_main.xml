@@ -10,31 +10,37 @@ tools:context=".MainActivity">
         android:id="@+id/rvView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/etTodoTitle"
+        app:layout_constraintBottom_toTopOf="@+id/etTask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etTodoTitle"
-        android:layout_width="288dp"
-        android:layout_height="53dp"
+        android:id="@+id/etTask"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
         android:hint="@string/todoEntry"
+        android:inputType="text"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:inputType="text"
-        android:autofillHints="" />
+        app:layout_constraintEnd_toStartOf="@+id/btnAdd"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnAddTodo"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/btnAdd"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etTodoTitle"
-        app:layout_constraintTop_toBottomOf="@+id/rvView" />
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete" />
 
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnDelete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
