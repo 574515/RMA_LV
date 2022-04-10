@@ -1,35 +1,38 @@
 package com.user.lv3
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.user.lv3.model.Task
 
-class TaskAdapter(private val context : Context,  private val dataSet : List<Task>) : RecyclerView.Adapter<TaskAdapter.ItemViewHolder>() {
+class TodoAdapter(
+    private val todos: MutableList<Task>
+) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
-    class ItemViewHolder(view : View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView? = view.findViewById(R.id.textView)
+    class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
+        return TodoViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.list_item,
+                parent,
+                false
+            )
+        )
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val itemViewHolder = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-
-        return ItemViewHolder(itemViewHolder)
+    fun addTodo(todo: Task) {
+        todos.add(todo)
+        notifyItemInserted(todos.size - 1)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val task = dataSet[position]
-        holder.textView!!.text = context.resources.getString(task.stringResId)
+
+    override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
+
     }
 
     override fun getItemCount(): Int {
-        Log.d("TaskAdapter", "getItemCount: " + dataSet.size)
-        return dataSet.size
+        return todos.size
     }
-
 }

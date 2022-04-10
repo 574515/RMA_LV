@@ -2,22 +2,28 @@ package com.user.lv3
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
-import com.user.lv3.R
-import com.user.lv3.data.DataSource
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.user.lv3.model.Task
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var todoAdapter: TodoAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        todoAdapter = TodoAdapter(mutableListOf())
 
-        val dataSet = DataSource().loadTasks()
-        val recyclerView =  findViewById<RecyclerView>(R.id.recyclerView)
-        Log.d("TaskAdapter", "getItemCount: " + dataSet.size)
+        rvView.adapter = todoAdapter
+        rvView.layoutManager = LinearLayoutManager(this)
 
-        recyclerView.adapter =  TaskAdapter(this, dataSet)
-
-        //dodati edit text i button Add, i to ga dodaje na listu
+        btnAddTodo.setOnClickListener {
+            val todoTitle = etTodoTitle.text.toString()
+            if(todoTitle.isNotEmpty()) {
+                val todo = Task(todoTitle)
+                todoAdapter.addTodo(todo)
+                etTodoTitle.text.clear()
+            }
+        }
     }
 }

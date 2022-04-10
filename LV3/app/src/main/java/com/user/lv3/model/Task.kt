@@ -1,3 +1,3 @@
 package com.user.lv3.model
 
-data class Task (val stringResId : Int)
+data class Task(val title: String)
